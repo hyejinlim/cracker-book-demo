@@ -54,6 +54,7 @@ class _AppState extends State<App> {
       body: children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         selectedFontSize: 12,
         selectedItemColor: PRIMARY_COLOR,
         currentIndex: currentIndex,
