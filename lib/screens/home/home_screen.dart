@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'components/body.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -18,9 +20,7 @@ class HomeScreen extends StatelessWidget {
         ],
         title: Image.asset('assets/images/logo.png'),
       ),
-      body: const Center(
-        child: Text('home'),
-      ),
+      body: const Body(),
     );
   }
 }
