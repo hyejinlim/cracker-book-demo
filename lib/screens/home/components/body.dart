@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'card_image.dart';
+import 'card_title.dart';
 import 'category_item.dart';
+import 'study_like.dart';
 
 List<Map> categories = [
   {'label': '토론', 'imageSrc': 'assets/images/img_chat.png'},
@@ -10,11 +13,16 @@ List<Map> categories = [
   {'label': '기타', 'imageSrc': 'assets/images/img_etc.png'},
 ];
 
+List<Map> cards = [
+  {'book': '생각의 쓰임', 'bookImageSrc': 'assets/images/img_book1.png'},
+];
+
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController scrollController = ScrollController();
     return ListView(
       children: [
         // category
@@ -40,118 +48,118 @@ class Body extends StatelessWidget {
             },
           ),
         ),
-        /* title */
-
-        /* title */
         Column(
           children: [
-            // title
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: Text(
-                      '\'생각의 쓰임\'의 \n 스터디',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  RichText(
-                    text: const TextSpan(
-                      style: TextStyle(color: Colors.grey),
-                      children: [
-                        TextSpan(
-                          text: '전체보기',
-                        ),
-                        WidgetSpan(
-                          child: Icon(
-                            Icons.keyboard_arrow_right,
-                            size: 16,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const CardTitle(title: '생각의 쓰임'),
             const SizedBox(height: 10),
-            // image
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              width: double.infinity,
-              height: 200,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFCF587),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Stack(
-                children: [
-                  Center(
-                    child: Image.asset('assets/images/img_book1.png'),
-                  ),
-                  Positioned(
-                    top: 25,
-                    right: 21,
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/icon_book.png'),
-                        const Text(
-                          '12',
-                          style: TextStyle(fontSize: 12),
+            const CardImage(
+              cardImage: 'assets/images/img_book1.png',
+              likeCount: '12',
+            ),
+            SizedBox(
+              height: 116,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Scrollbar(
+                  controller: scrollController,
+                  isAlwaysShown: true,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    controller: scrollController,
+                    // padding: const EdgeInsets.all(10.0),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index.isOdd) {
+                        return const Divider();
+                      }
+                      return Container(
+                        width: MediaQuery.of(context).size.width * 0.86, // 345
+                        // decoration: BoxDecoration(
+                        //   border: Border.all(color: Colors.red),
+                        // ),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 20.0,
                         ),
-                      ],
-                    ),
-                  )
-                ],
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 6),
+                                    child: Image.asset(
+                                        'assets/images/img_icon_blue.png'),
+                                  ),
+                                  const Text('주리'),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 8),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/img_book_open_4x.png',
+                                              width: 18,
+                                              height: 18,
+                                            ),
+                                            const Text('1'),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                              'assets/images/img_people.png'),
+                                          const Text('3'),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      top: 4,
+                                      bottom: 14,
+                                    ),
+                                    child: Text(
+                                      '$index 사소한 일상으로 만드는 컨텐츠',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    '2021.04.26 ~ 05.21 토 14:00',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            const StudyLikeWidget(),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
-            // list
-            // Container(
-            //   height: 300,
-            //   padding: const EdgeInsets.all(10.0),
-            //   child: GridView.count(
-            //     crossAxisCount: 1,
-            //     scrollDirection: Axis.horizontal,
-            //     shrinkWrap: true,
-            //     children: List.generate(4, (index) {
-            //       return Column(
-            //         children: [
-            //           Container(
-            //             padding: const EdgeInsets.all(40),
-            //             margin: const EdgeInsets.all(8),
-            //             child: Text('$index'),
-            //           ),
-            //         ],
-            //       );
-            //     }).toList(),
-            //   ),
-            // ),
-            // Container(
-            //   height: 200,
-            //   decoration: BoxDecoration(
-            //     border: Border.all(color: Colors.red),
-            //   ),
-            //   child: ListView.builder(
-            //     padding: const EdgeInsets.all(10.0),
-            //     scrollDirection: Axis.horizontal,
-            //     itemCount: categories.length,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       return Container(
-            //         width: 300,
-            //         decoration: BoxDecoration(
-            //           border: Border.all(color: Colors.red),
-            //         ),
-            //         margin: const EdgeInsets.symmetric(horizontal: 10.0),
-            //         child: Text('$index'),
-            //       );
-            //     },
-            //   ),
-            // ),
           ],
         ),
       ],
