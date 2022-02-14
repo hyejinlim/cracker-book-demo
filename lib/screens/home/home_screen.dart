@@ -18,7 +18,11 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {},
           )
         ],
-        title: Image.asset('assets/images/logo.png'),
+        title: Image.asset(
+          'assets/images/logo.png',
+          width: 151,
+          height: 16,
+        ),
       ),
       body: const Body(),
     );

@@ -26,11 +26,15 @@ class CardImage extends StatelessWidget {
             child: Image.asset(cardImage),
           ),
           Positioned(
-            top: 25,
-            right: 21,
+            top: 20,
+            right: 20,
             child: Column(
               children: [
-                Image.asset('assets/images/icon_book.png'),
+                Image.asset(
+                  'assets/images/icon_book.png',
+                  width: 26,
+                  height: 26,
+                ),
                 Text(
                   likeCount,
                   style: const TextStyle(fontSize: 12),

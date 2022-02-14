@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'study_like.dart';
 
@@ -9,7 +10,6 @@ class CardList extends StatelessWidget {
     required this.name,
     required this.title,
     required this.datetime,
-    this.studyOpenCount = 0,
     this.peopleCount = 0,
   }) : super(key: key);
 
@@ -17,7 +17,6 @@ class CardList extends StatelessWidget {
   final String name;
   final String title;
   final String datetime;
-  final int studyOpenCount;
   final int peopleCount;
 
   @override
@@ -40,7 +39,7 @@ class CardList extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
-                  child: Image.asset(iconSrc),
+                  child: SvgPicture.asset(iconSrc),
                 ),
                 Text(name),
               ],
@@ -62,14 +61,14 @@ class CardList extends StatelessWidget {
                             width: 18,
                             height: 18,
                           ),
-                          Text('$studyOpenCount'),
+                          const Text('글쓰기'),
                         ],
                       ),
                     ),
                     Row(
                       children: [
-                        Image.asset('assets/images/img_people.png'),
-                        Text('$peopleCount'),
+                        SvgPicture.asset('assets/images/svg_people.svg'),
+                        Text('멤버 $peopleCount/5'),
                       ],
                     )
                   ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class StudyLikeWidget extends StatefulWidget {
   const StudyLikeWidget({Key? key}) : super(key: key);
@@ -21,8 +22,8 @@ class _StudyLikeWidgetState extends State<StudyLikeWidget> {
             toggleLike();
           },
           child: (isLike)
-              ? Image.asset('assets/images/img_like_on.png')
-              : Image.asset('assets/images/img_like_off.png'),
+              ? SvgPicture.asset('assets/images/svg_like_on.svg')
+              : SvgPicture.asset('assets/images/svg_like_off.svg'),
         ),
         Text('$likeCount'),
       ],
