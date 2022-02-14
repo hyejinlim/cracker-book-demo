@@ -52,41 +52,84 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: children[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedFontSize: 12,
-        selectedItemColor: PRIMARY_COLOR,
-        currentIndex: currentIndex,
-        onTap: handleTap,
-        items: navigationItems
-            .map(
-              (e) => BottomNavigationBarItem(
-                icon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: (e['type'] == 'image'
-                      ? Image.asset(
-                          e['icon'],
-                          width: 22,
-                          height: 22,
-                        )
-                      : Icon(e['icon'])),
-                ),
-                activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: (e['type'] == 'image'
-                      ? Image.asset(
-                          e['activeIcon'],
-                          width: 22,
-                          height: 22,
-                        )
-                      : Icon(e['icon'])),
-                ),
-                label: e['label'],
-              ),
-            )
-            .toList(),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        clipBehavior: Clip.antiAlias,
+        child: SizedBox(
+          child: BottomNavigationBar(
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            selectedFontSize: 12,
+            selectedItemColor: PRIMARY_COLOR,
+            currentIndex: currentIndex,
+            onTap: handleTap,
+            items: navigationItems
+                .map(
+                  (e) => BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: (e['type'] == 'image'
+                          ? Image.asset(
+                              e['icon'],
+                              width: 22,
+                              height: 22,
+                            )
+                          : Icon(e['icon'])),
+                    ),
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: (e['type'] == 'image'
+                          ? Image.asset(
+                              e['activeIcon'],
+                              width: 22,
+                              height: 22,
+                            )
+                          : Icon(e['icon'])),
+                    ),
+                    label: e['label'],
+                  ),
+                )
+                .toList(),
+          ),
+        ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   type: BottomNavigationBarType.fixed,
+      //   backgroundColor: Colors.white,
+      //   selectedFontSize: 12,
+      //   selectedItemColor: PRIMARY_COLOR,
+      //   currentIndex: currentIndex,
+      //   onTap: handleTap,
+      //   items: navigationItems
+      //       .map(
+      //         (e) => BottomNavigationBarItem(
+      //           icon: Padding(
+      //             padding: const EdgeInsets.symmetric(vertical: 6),
+      //             child: (e['type'] == 'image'
+      //                 ? Image.asset(
+      //                     e['icon'],
+      //                     width: 22,
+      //                     height: 22,
+      //                   )
+      //                 : Icon(e['icon'])),
+      //           ),
+      //           activeIcon: Padding(
+      //             padding: const EdgeInsets.symmetric(vertical: 6),
+      //             child: (e['type'] == 'image'
+      //                 ? Image.asset(
+      //                     e['activeIcon'],
+      //                     width: 22,
+      //                     height: 22,
+      //                   )
+      //                 : Icon(e['icon'])),
+      //           ),
+      //           label: e['label'],
+      //         ),
+      //       )
+      //       .toList(),
+      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.transparent,
