@@ -1,17 +1,9 @@
+import 'package:cracker_book_demo/widgets/category_list.dart';
 import 'package:flutter/material.dart';
 
 import 'card_image.dart';
 import 'card_list.dart';
 import 'card_title.dart';
-import 'category_item.dart';
-
-List<Map> categories = [
-  {'label': '토론', 'imageSrc': 'assets/images/img_chats.png'},
-  {'label': '발표', 'imageSrc': 'assets/images/img_microphone.png'},
-  {'label': '글쓰기', 'imageSrc': 'assets/images/img_post.png'},
-  {'label': '포트폴리오', 'imageSrc': 'assets/images/img_portfolio.png'},
-  {'label': '기타', 'imageSrc': 'assets/images/img_etc.png'},
-];
 
 List<Map> studies = [
   {
@@ -64,28 +56,7 @@ class Body extends StatelessWidget {
     return ListView(
       children: [
         // category
-        Container(
-          height: 120,
-          decoration: const BoxDecoration(color: Colors.white),
-          child: ListView.builder(
-            padding: const EdgeInsets.all(10.0),
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                width: MediaQuery.of(context).size.width / 7.2, // study
-                child: CategoryItem(
-                  label: categories[index]['label'],
-                  imageSrc: categories[index]['imageSrc'],
-                ),
-              );
-            },
-          ),
-        ),
+        const CategoryList(),
         Column(
           children: [
             const CardTitle(title: '생각의 쓰임'),
