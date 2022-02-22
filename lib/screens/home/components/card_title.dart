@@ -4,7 +4,6 @@ class CardTitle extends StatelessWidget {
   const CardTitle({
     Key? key,
     required this.title,
-    // required this.tapRoute
   }) : super(key: key);
 
   final String title;
@@ -14,10 +13,11 @@ class CardTitle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
             child: Text(
-              '\'$title\'의 스터디',
+              '\'$title\'의 \n스터디',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -26,7 +26,9 @@ class CardTitle extends StatelessWidget {
           ),
           RichText(
             text: const TextSpan(
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(
+                color: Colors.grey,
+              ),
               children: [
                 TextSpan(
                   text: '전체보기',

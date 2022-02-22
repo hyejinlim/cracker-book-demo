@@ -8,5 +8,6 @@ ThemeData themeData(BuildContext context) {
     scaffoldBackgroundColor: SCAFFOLD_COLOR,
     splashColor: Colors.transparent, // remove bottom navigation effect
     highlightColor: Colors.transparent, // remove bottom navigation effect
+    iconTheme: const IconThemeData(color: BODY_TEXT_COLOR),
   );
 }

@@ -1,5 +1,6 @@
 import 'package:cracker_book_demo/config/constant.dart';
 import 'package:cracker_book_demo/models/category.dart';
+import 'package:cracker_book_demo/screens/category_detail/category_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryList extends StatelessWidget {
@@ -21,9 +22,19 @@ class CategoryList extends StatelessWidget {
             ),
             margin: const EdgeInsets.symmetric(horizontal: 10.0),
             width: MediaQuery.of(context).size.width / 7.2, // study
-            child: CategoryItem(
-              label: categories[index].label,
-              imageSrc: categories[index].imageSrc,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CategoryDetailScreen(),
+                  ),
+                );
+              },
+              child: CategoryItem(
+                label: categories[index].label,
+                imageSrc: categories[index].imageSrc,
+              ),
             ),
           );
         },

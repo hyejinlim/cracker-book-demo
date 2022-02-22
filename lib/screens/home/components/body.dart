@@ -1,51 +1,10 @@
+import 'package:cracker_book_demo/models/study.dart';
 import 'package:cracker_book_demo/widgets/category_list.dart';
 import 'package:flutter/material.dart';
 
 import 'card_image.dart';
 import 'card_list.dart';
 import 'card_title.dart';
-
-List<Map> studies = [
-  {
-    'iconSrc': 'assets/images/svg_icon_blue.svg',
-    'name': '주리1',
-    'title': '사소한 일상으로 만드는 컨텐츠1',
-    'datetime': '2021.04.26 ~ 05.21 토 14:00',
-    'peopleCount': 1,
-  },
-  {
-    'iconSrc': 'assets/images/svg_icon_yellow.svg',
-    'name': '주리2',
-    'title': '사소한 일상으로 만드는 컨텐츠2',
-    'datetime': '2021.04.26 ~ 05.21 토 14:00',
-  },
-  {
-    'iconSrc': 'assets/images/svg_icon_pink.svg',
-    'name': '주리3',
-    'title': '사소한 일상으로 만드는 컨텐츠1',
-    'datetime': '2021.04.26 ~ 05.21 토 14:00',
-    'peopleCount': 1,
-  },
-  {
-    'iconSrc': 'assets/images/svg_icon_green.svg',
-    'name': '주리4',
-    'title': '사소한 일상으로 만드는 컨텐츠2',
-    'datetime': '2021.04.26 ~ 05.21 토 14:00',
-  },
-  {
-    'iconSrc': 'assets/images/svg_icon_blue.svg',
-    'name': '주리7',
-    'title': '사소한 일상으로 만드는 컨텐츠2',
-    'datetime': '2021.04.26 ~ 05.21 토 14:00',
-  },
-  // {
-  //   'iconSrc': 'assets/images/svg_icon_yellow.svg',
-  //   'name': '주리3',
-  //   'title': '사소한 일상으로 만드는 컨텐츠1',
-  //   'datetime': '2021.04.26 ~ 05.21 토 14:00',
-  //   'peopleCount': 1,
-  // },
-];
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -76,22 +35,26 @@ class Body extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     controller: scrollController,
                     scrollDirection: Axis.horizontal,
-                    itemCount: studies.length,
+                    itemCount: studyLst.length,
                     itemBuilder: (BuildContext context, int index) {
                       final i = index;
                       final iPlus = index + 1;
                       if (index.isOdd) {
                         return const Divider();
                       }
-                      return (iPlus == studies.length)
+                      final study = studyLst[i];
+                      final studyP = studyLst[iPlus];
+
+                      return (iPlus == studyLst.length)
                           ? Column(
                               children: [
                                 CardList(
-                                  iconSrc: studies[i]['iconSrc'],
-                                  name: studies[i]['name'],
-                                  title: studies[i]['title'],
-                                  datetime: studies[i]['datetime'],
-                                  peopleCount: 4,
+                                  type: study.type,
+                                  iconSrc: study.iconSrc,
+                                  name: study.name,
+                                  title: study.title,
+                                  datetime: study.datetime,
+                                  memberCount: study.memberCount,
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(20.0),
@@ -106,17 +69,20 @@ class Body extends StatelessWidget {
                           : Column(
                               children: [
                                 CardList(
-                                  iconSrc: studies[i]['iconSrc'],
-                                  name: studies[i]['name'],
-                                  title: studies[i]['title'],
-                                  datetime: studies[i]['datetime'],
-                                  peopleCount: 4,
+                                  type: study.type,
+                                  iconSrc: study.iconSrc,
+                                  name: study.name,
+                                  title: study.title,
+                                  datetime: study.datetime,
+                                  memberCount: study.memberCount,
                                 ),
                                 CardList(
-                                  iconSrc: studies[iPlus]['iconSrc'],
-                                  name: studies[iPlus]['name'],
-                                  title: studies[iPlus]['title'],
-                                  datetime: studies[iPlus]['datetime'],
+                                  type: studyP.type,
+                                  iconSrc: studyP.iconSrc,
+                                  name: studyP.name,
+                                  title: studyP.title,
+                                  datetime: studyP.datetime,
+                                  memberCount: studyP.memberCount,
                                 ),
                               ],
                             );

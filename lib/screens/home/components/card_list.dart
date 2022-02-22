@@ -1,3 +1,4 @@
+import 'package:cracker_book_demo/widgets/study_type_member.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,18 +7,20 @@ import 'study_like.dart';
 class CardList extends StatelessWidget {
   const CardList({
     Key? key,
+    required this.type,
     required this.iconSrc,
     required this.name,
     required this.title,
     required this.datetime,
-    this.peopleCount = 0,
+    required this.memberCount,
   }) : super(key: key);
 
+  final String type;
   final String iconSrc;
   final String name;
   final String title;
   final String datetime;
-  final int peopleCount;
+  final int memberCount;
 
   @override
   Widget build(BuildContext context) {
@@ -50,29 +53,7 @@ class CardList extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/img_book_open_4x.png',
-                            width: 18,
-                            height: 18,
-                          ),
-                          const Text('글쓰기'),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset('assets/images/svg_people.svg'),
-                        Text('멤버 $peopleCount/5'),
-                      ],
-                    )
-                  ],
-                ),
+                StudyTypeMember(type: type, memberCount: memberCount),
                 Container(
                   padding: const EdgeInsets.only(
                     top: 4,
